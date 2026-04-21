@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia Prático de Atendimento Ágil</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .highlight {
+            background-color: #fff8e1;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .shortcut {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 2px;
+        }
+        
+        .tip-box {
+            background-color: #e8f5e9;
+            border-left: 4px solid var(--success);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .benefit {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .warning {
+            background-color: #ffebee;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .toggle-section {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .toggle-section::after {
+            content: "▼";
+            transition: transform 0.3s;
+        }
+        
+        .toggle-section.active::after {
+            transform: rotate(180deg);
+        }
+        
+        .section-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .collapsed .section-content {
+            max-height: 0;
+        }
+        
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .quick-link {
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .quick-link:hover {
+            background-color: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-bolt"></i> Guia de Atendimento Ágil</h1>
+            <p class="subtitle">Ferramentas e estratégias para otimizar seu atendimento e agendamento</p>
+        </div>
+    </header>
+ 
+    <div class="container">
+        <div class="quick-links">
+            <a href="#categorias" class="quick-link"><i class="fas fa-list"></i> Códigos de Procedimentos</a>
+            <a href="#botmaker" class="quick-link"><i class="fas fa-robot"></i> Atalhos Botmaker</a>
+            <a href="#convenios" class="quick-link"><i class="fas fa-file-medical"></i> Regras de Convênios</a>
+            <a href="#estrategias" class="quick-link"><i class="fas fa-lightbulb"></i> Estratégias de Atendimento</a>
+        </div>
+ 
+        <div class="card">
+            <h2><i class="fas fa-desktop"></i> Organização do Ambiente</h2>
+            <div class="highlight">
+                <p><strong>Configuração de Telas:</strong> Utilize o Edge em um monitor e o Chrome em outro para visualização simultânea de agendas e conversas.</p>
+                <p class="benefit">Benefício: Redução de troca de janelas e aumento de produtividade.</p>
+            </div>
+            
+            <h3>Organização de Abas:</h3>
+            <div class="tip-box">
+                <p><strong>Edge:</strong> Agrupe abas por função e abra/feche conforme necessidade.</p>
+                <p><strong>Chrome:</strong> Organize por conversa e nomeie com identificação (ex: nome do paciente).</p>
+                <p class="benefit">Benefício: Localização rápida de atendimentos sem confusão.</p>
+            </div>
+        </div>
+ 
+        <div class="card" id="categorias">
+            <h2><i class="fas fa-keyboard"></i> Códigos Numéricos para Procedimentos</h2>
+            <p>Utilize os códigos diretos para ganhar velocidade e reduzir cliques:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Procedimento</th>
+                        <th>Código</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Consulta Oftalmogeral</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Oftalmopediatria</td>
+                        <td>261</td>
+                    </tr>
+                    <tr>
+                        <td>Retina</td>
+                        <td>252</td>
+                    </tr>
+                    <tr>
+                        <td>Glaucoma</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>Catarata</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>Facorefra</td>
+                        <td>283</td>
+                    </tr>
+                    <tr>
+                        <td>Geral (já operado)</td>
+                        <td>282</td>
+                    </tr>
+                    <tr>
+                        <td>Estrabismo</td>
+                        <td>260</td>
+                    </tr>
+                    <tr>
+                        <td>Plástica</td>
+                        <td>263</td>
+                    </tr>
+                    <tr>
+                        <td>Campo Visual</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>Mapeamento de Retina</td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td>OCT Retina</td>
+                        <td>63</td>
+                    </tr>
+                    <tr>
+                        <td>OCT N.O (Glaucoma)</td>
+                        <td>28</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Canais:</h3>
+            <div class="tip-box">
+                <p>BOTMAKER → <strong>41</strong></p>
+                <p>TELEFONE → <strong>42</strong></p>
+            </div>
+        </div>
+ 
+        <div class="card" id="botmaker">
+            <h2><i class="fas fa-robot"></i> Atalhos do Botmaker</h2>
+            <p>Utilize comandos rápidos para respostas frequentes:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Comando</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="shortcut">/Com</span></td>
+                        <td>Como posso ajudar?</td>
+                    </tr>
+                    <tr>
+                        <td><span class="shortcut">/Saud</span></td>
+                        <td>Saudação</td>
+                    </tr>
+                    <tr>
+                        <td><span class="shortcut">/Prazo de envio</span></td>
+                        <td>Solicitação de exames</td>
+                    </tr>
+                    <tr>
+                        <td><span class="shortcut">/Seu aten</span></td>
+                        <td>Tipo de atendimento (convênio ou particular)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="shortcut">/Faz uso</span></td>
+                        <td>Uso de lentes ou cirurgias</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <p><strong>Dicas importantes:</strong></p>
+                <ul>
+                    <li>Use setas do teclado + Enter para selecionar respostas</li>
+                    <li>Use <span class="shortcut">Shift + Enter</span> para enviar sem clicar</li>
+                </ul>
+            </div>
+            
+            <h3>Exemplo de Combo Rápido:</h3>
+            <div class="highlight">
+                <p><span class="shortcut">/Saud</span> → Enter → <span class="shortcut">Shift + Enter</span><br>
+                <span class="shortcut">/Com</span> → Enter → <span class="shortcut">Shift + Enter</span></p>
+                <p class="benefit">Resultado: Saudação + pergunta inicial em menos de 10 segundos.</p>
+            </div>
+        </div>
+ 
+        <div class="card" id="estrategias">
+            <h2><i class="fas fa-tasks"></i> Estratégias de Atendimento</h2>
+            
+            <div class="toggle-section">Multitarefas Inteligentes <i class="fas fa-chevron-down"></i></div>
+            <div class="section-content">
+                <div class="tip-box">
+                    <p>Enquanto finaliza um agendamento simples, avance em outras conversas.</p>
+                    <p>Faça perguntas iniciais em paralelo (ex: motivo da consulta, uso de lentes).</p>
+                    <p class="benefit">Benefício: Reduz tempo ocioso e aumenta volume de atendimentos.</p>
+                </div>
+            </div>
+            
+            <div class="toggle-section">Verificação de Cadastro <i class="fas fa-chevron-down"></i></div>
+            <div class="section-content">
+                <div class="tip-box">
+                    <p>Copie o número do paciente e verifique se já existe cadastro.</p>
+                    <p class="benefit">Benefício: Evita perguntas desnecessárias e agiliza o processo.</p>
+                </div>
+            </div>
+            
+            <div class="toggle-section">Cópia de Agendamento <i class="fas fa-chevron-down"></i></div>
+            <div class="section-content">
+                <div class="tip-box">
+                    <p>Copie um agendamento já existente e cole para criar um novo. Depois, apenas cancele o anterior (se necessário).</p>
+                    <p class="benefit">Benefício: Reduz o tempo de preenchimento manual.</p>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="card" id="convenios">
+            <h2><i class="fas fa-file-medical"></i> Regras para Convênios</h2>
+            <div class="warning">
+                <p><strong>Atenção:</strong> Sempre confirme, pois alguns convênios possuem exceções.</p>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Convênio</th>
+                        <th>Regras</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bradesco</td>
+                        <td>Excluir Recreio e Penha</td>
+                    </tr>
+                    <tr>
+                        <td>SulAmérica</td>
+                        <td>Excluir Tijuca e Del Castilho</td>
+                    </tr>
+                    <tr>
+                        <td>Porto Seguro</td>
+                        <td>Excluir Tijuca</td>
+                    </tr>
+                    <tr>
+                        <td>Bradesco Rede Ideal</td>
+                        <td>Apenas Barra, Méier e Tijuca</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p class="benefit">Benefício: Diminui erros de agendamento e retrabalho.</p>
+        </div>
+ 
+        <div class="card">
+            <h2><i class="fas fa-check-circle"></i> Boas Práticas</h2>
+            <div class="tip-box">
+                <ul>
+                    <li>Sempre revise antes de finalizar o agendamento</li>
+                    <li>Priorize clareza e objetividade nas mensagens</li>
+                    <li>Use padrões para manter consistência no atendimento</li>
+                    <li>Com o tempo, foque em memorização dos processos para ganhar velocidade</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+ 
+    <footer>
+        <p>Guia Prático de Agilidade no Atendimento e Agendamento | Combinando organização, atalhos e padronização para atendimento eficiente</p>
+    </footer>
+ 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleSections = document.querySelectorAll('.toggle-section');
+            
+            toggleSections.forEach(section => {
+                section.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    this.classList.toggle('active');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
