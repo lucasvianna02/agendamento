@@ -6,11 +6,11 @@
     <title>Guia Prático de Atendimento Ágil</title>
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --success: #2ecc71;
+             --primary: #2c3e50;
+             --secondary: #3498db;
+             --accent: #e74c3c;
+             --light: #ecf0f1;
+             --success: #2ecc71;
         }
         
         * {
